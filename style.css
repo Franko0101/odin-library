@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 20px;
+    background-color: #A67C4D;
+    color: #4B3D2D;
+}
+
+button {
+    font-size: 16px;
+    background-color: #D9CBA0;
+    border-radius: 12px;
+    border: 1px solid #4B3D2D;
+    padding: 10px 20px;
+    color: #4B3D2D;
+}
+
