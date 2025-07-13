@@ -10,7 +10,30 @@
 <body>
     <div class="header">
         <h1>Odin's Library</h1>
-        <button>Add Book</button>
+        <button class="add-book-btn">Add Book</button>
+    </div>
+    <div class="container">
+        <div class="main">
+        </div>
+        <div class="sidebar" hidden>
+            <form action="">
+                <label for="">Titolo</label>
+                <input type="text" id="title" name="title" required>
+                <label for="author">Autore</label>
+                <input type="text" id="author" name="author" required>
+                <label for="pages">N. Pagine</label>
+                <input type="number" id="pages" name="pages" required>
+                <label for="status">Stato</label>
+                <select name="status" id="status">
+                    <option value="read">Letto</option>
+                    <option value="unread">Non Letto</option>
+                </select>
+                <div class="buttons">
+                    <button type="submit">Conferma</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
