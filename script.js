@@ -16,14 +16,14 @@ addBook(
     'Harry potter e la Camera dei Segreti', 
     'J.K. Rowling', 
     244, 
-    true
+    "Letto"
 );
 
 addBook(
     '1984',
     'George Orwell',
     320,
-    false
+    "Non Letto"
 )
 
 function removeAllChild(parent) {
@@ -32,17 +32,18 @@ function removeAllChild(parent) {
     }
 }
 
+Book.prototype.toggleReadStatus = function() {
+    if(this.read === "Non Letto")
+        this.read = "Letto";
+    else
+        this.read = "Non Letto"
+}
+
 function displayBooks() {
     const main = document.querySelector(".main");
     removeAllChild(main);
 
     for(let book of library) {
-        let bookStatus = "";
-        if(book.read) 
-            bookStatus = "Letto"
-        else 
-            bookStatus = "Non Letto";
-
         const card = document.createElement("div");
         card.classList.add("card");
         const removeBtn = document.createElement("button");
@@ -65,16 +66,10 @@ function displayBooks() {
         bookPages.textContent = book.pages + " Pagine";
         const readStatusBtn = document.createElement("button");
         readStatusBtn.classList.add("read-status-btn");
-        readStatusBtn.textContent = bookStatus;
+        readStatusBtn.textContent = book.read;
 
         readStatusBtn.addEventListener("click", () => {
-            if(book.read) {
-                book.read = false;
-                bookStatus = "Non Letto"
-            } else {
-                book.read = true;
-                bookStatus = "Letto"
-            }
+            book.toggleReadStatus();
             displayBooks();
         });
 
@@ -102,12 +97,16 @@ addBookBtn.addEventListener("click", () => {
     }
 });
 
-const removeBtns = document.querySelectorAll(".remove-btn");
+const formData = document.querySelector("form");
 
-removeBtns.forEach((button) => {
-    button.addEventListener("click", function (e) {
-        console.log(e.target);
-    })
+formData.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target).entries());
+    console.log(data);
+    addBook(data.title, data.author, data.pages, data.status);
+    displayBooks();
 })
+
+
 
 displayBooks();
